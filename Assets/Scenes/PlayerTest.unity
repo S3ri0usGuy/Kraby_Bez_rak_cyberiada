@@ -589,6 +589,8 @@ MonoBehaviour:
   moveSpeed: 7
   gravity: 9.8
   maxVelocityY: 20
+  jumpForce: 6
+  jumpBufferTime: 0.2
 --- !u!143 &1061344716
 CharacterController:
   m_ObjectHideFlags: 0

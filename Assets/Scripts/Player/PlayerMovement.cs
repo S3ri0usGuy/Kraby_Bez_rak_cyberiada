@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -7,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private InputProvider _inputProvider;
     private CharacterController _controller;
 
-    private int _currentJumpCount;
     private float _velocityY;
+    private InputBuffer _buffer;
 
     [SerializeField, Min(0f)]
     private float moveSpeed;
@@ -19,23 +18,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)]
     private float jumpForce = 14f;
     [SerializeField, Min(0f)]
-    [Tooltip("How many times player can jump in a row without landing.")]
-    private int maxJumpCount = 2;
+    private float jumpBufferTime = 0.2f;
 
     private void Awake()
     {
         _inputProvider = GetComponentInParent<InputProvider>();
         _controller = GetComponent<CharacterController>();
-    }
 
-    private void OnJumpPerformed(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+        _buffer = new InputBuffer(_ => TryJump(), this, jumpBufferTime);
 
-    private void OnEnable()
-    {
-        _currentJumpCount = 0;
+        _inputProvider.PlayerActions.Jump.performed += _buffer.PerformedListener;
     }
 
     private void Update()
@@ -55,13 +47,10 @@ public class PlayerMovement : MonoBehaviour
             _velocityY -= halfGravity;
             velocity.y = _velocityY * Time.deltaTime;
             _velocityY -= halfGravity;
-
-            _currentJumpCount = Mathf.Min(1, 0);
         }
         else
         {
-            _velocityY = 0f;
-            _currentJumpCount = 0;
+            _velocityY = Mathf.Max(0f, _velocityY);
         }
         _velocityY = Mathf.Min(_velocityY, maxVelocityY);
 
@@ -78,5 +67,15 @@ public class PlayerMovement : MonoBehaviour
     public void SetJumpForce(float force)
     {
         _velocityY = force;
+    }
+
+    private bool TryJump()
+    {
+        if (_controller.isGrounded)
+        {
+            SetJumpForce(jumpForce);
+            return true;
+        }
+        return false;
     }
 }
