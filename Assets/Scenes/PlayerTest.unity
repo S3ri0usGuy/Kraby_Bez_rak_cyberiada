@@ -1920,7 +1920,7 @@ MonoBehaviour:
   speedThreshold: 10
   highSpeedFov: 70
   blendSpeed: 50
-  negativeBlendSpeed: 20
+  negativeBlendSpeed: 35
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
