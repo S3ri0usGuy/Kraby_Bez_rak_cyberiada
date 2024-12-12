@@ -101,12 +101,12 @@ public class PlayerMovement : MonoBehaviour
         _velocityY = force;
     }
 
-    private void OnSprintStarted(InputAction.CallbackContext obj)
+    private void OnSprintStarted(InputAction.CallbackContext context)
     {
         _isInSprint = true;
     }
 
-    private void OnSprintEnded(InputAction.CallbackContext obj)
+    private void OnSprintEnded(InputAction.CallbackContext context)
     {
         _isInSprint = false;
     }
