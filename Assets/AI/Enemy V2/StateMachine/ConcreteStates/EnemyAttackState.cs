@@ -12,6 +12,7 @@ public class EnemyAttackState : EnemyState
     private float _distanceToCountExit = 3f;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
     //state ataku 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
