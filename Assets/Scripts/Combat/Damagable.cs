@@ -5,6 +5,9 @@ public class Damagable : MonoBehaviour
 {
     private int _hp;
 
+    [SerializeField, Min(1)]
+    private int maxHp = 100;
+
     public int Hp
     {
         get => _hp;
@@ -20,6 +23,11 @@ public class Damagable : MonoBehaviour
     public event Action<Damagable> HpChanged;
     public event Action<Damagable, int> Damaged;
     public event Action<Damagable> Died;
+
+    private void OnEnable()
+    {
+        Hp = maxHp;
+    }
 
     private void CallHpChangedEvent()
     {
