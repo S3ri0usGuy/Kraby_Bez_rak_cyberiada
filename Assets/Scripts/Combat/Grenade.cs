@@ -14,6 +14,9 @@ public class Grenade : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect; // Prefab efektu wybuchu
 
+    [SerializeField]
+    private LayerMask explosionLayers = -1;
+
     private Rigidbody rb;
 
     private void Awake()
@@ -40,6 +43,18 @@ public class Grenade : MonoBehaviour
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
+
+        var colliders = Physics.OverlapSphere(transform.position, explosionRadius,
+            explosionLayers, QueryTriggerInteraction.Collide);
+
+        foreach (var collider in colliders)
+        {
+            if (collider.TryGetComponent(out Damagable damagable))
+            {
+                damagable.InflictDamage(damage, DamageType.Shot);
+            }
+        }
+
         //zniszczenie granatu po wybuchu
         Destroy(gameObject);
     }
