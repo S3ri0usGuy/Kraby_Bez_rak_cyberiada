@@ -40,7 +40,8 @@ public class DynamicFov : MonoBehaviour
             _targetFov = _defaultFov;
         }
 
+        float blend = _targetFov > _camera.fieldOfView ? blendSpeed : negativeBlendSpeed;
         _camera.fieldOfView = Mathf.MoveTowards(
-            _camera.fieldOfView, _targetFov, blendSpeed * Time.deltaTime);
+            _camera.fieldOfView, _targetFov, blend * Time.deltaTime);
     }
 }
