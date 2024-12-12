@@ -27,7 +27,14 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private float healthRegenerationRate = 1f; //punkty zycia na sekunde
     private float regenerationCooldown = 5f; // Czas po ktoryn regeneracja  sie aktywuje
-    private void Updaate()
+    private void OnDeath
+    (
+        //wywolanie eksplozji
+        Instantiate(deathExplosionPrefab, transform.position, Quaterion.identify);
+        //dodatkowo mozna zniszczyc obiekt
+        Destroy(ganeObject)
+    )
+    private void Update()
     {
         if (IsAlive && Time.time - lastDamegeTime  >= regenerationCooldown)
         {
