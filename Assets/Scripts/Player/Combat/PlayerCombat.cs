@@ -51,7 +51,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void StartReloading()
     {
-        if (_isReloading || BulletsInMagazine > magazineCapacity) return;
+        if (_isReloading || BulletsInMagazine >= magazineCapacity) return;
 
         _isReloading = true;
         _animator.SetTrigger("reload");
