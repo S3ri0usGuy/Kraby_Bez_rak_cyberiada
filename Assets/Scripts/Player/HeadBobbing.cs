@@ -40,6 +40,9 @@ public class HeadBobbing : MonoBehaviour
     [SerializeField]
     private float recoverySpeed = 4f;
 
+    [SerializeField]
+    private float groundedVelocityThreshold = 0.1f;
+
     private void Start()
     {
         _defaultX = transform.localPosition.x;
@@ -50,7 +53,10 @@ public class HeadBobbing : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 xzVelocity = movement.CurrentVelocity;
+        Vector3 velocity = movement.CurrentVelocity;
+        bool isGrounded = Mathf.Abs(velocity.y) < groundedVelocityThreshold;
+
+        Vector3 xzVelocity = velocity;
         xzVelocity.y = 0f;
 
         float speed = xzVelocity.magnitude;
@@ -59,14 +65,16 @@ public class HeadBobbing : MonoBehaviour
 
         float bobSpeed = Mathf.Lerp(minBobSpeed, maxBobSpeed, t);
         float amplitudeModifier = Mathf.Lerp(minAmplitudeModifier, maxAmplitudeModifier, t);
-        if (Mathf.Approximately(normalizedSpeed, 0f))
+        if (Mathf.Approximately(normalizedSpeed, 0f) || !isGrounded)
         {
+            // Disable bob when midair or not moving
             t = 0f;
             _targetPosition = _defaultPosition;
             targetSpeed = recoverySpeed;
         }
         else
         {
+            // No time to explain
             t += Time.deltaTime;
 
             float x = bobSpeed * t;

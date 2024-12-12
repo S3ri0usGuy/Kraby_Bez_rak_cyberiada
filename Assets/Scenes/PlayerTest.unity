@@ -1754,6 +1754,7 @@ GameObject:
   - component: {fileID: 2147164571}
   - component: {fileID: 2147164570}
   - component: {fileID: 2147164573}
+  - component: {fileID: 2147164574}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1902,6 +1903,24 @@ MonoBehaviour:
   maxAmplitudeModifier: 2
   followTargetSpeed: 12
   recoverySpeed: 1
+  groundedVelocityThreshold: 0.1
+--- !u!114 &2147164574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147164568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be90359e65edcc4fbbe9ff14861303d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 1061344715}
+  speedThreshold: 10
+  highSpeedFov: 70
+  blendSpeed: 50
+  negativeBlendSpeed: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

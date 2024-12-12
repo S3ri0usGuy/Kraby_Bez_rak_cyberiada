@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)]
     private float jumpBufferTime = 0.2f;
 
+    /// <summary>
+    /// Gets a value indicating whether the player is considered grounded
+    /// (considering coyote time).
+    /// </summary>
     public bool IsGroundedCoyoteTime => _controller.isGrounded || _coyoteTimeLeft > 0f;
 
     public Vector3 CurrentVelocity => _velocity;
