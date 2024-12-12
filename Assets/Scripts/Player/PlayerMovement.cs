@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private InputProvider _inputProvider;
     private CharacterController _controller;
 
+    private float _coyoteTimeLeft;
     private float _velocityY;
     private InputBuffer _buffer;
 
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = 9.8f;
     [SerializeField, Min(0f)]
     private float maxVelocityY = 20f;
+    [SerializeField, Min(0f)]
+    private float coyoteTime = 0.12f;
     [SerializeField, Min(0f)]
     private float jumpForce = 14f;
     [SerializeField, Min(0f)]
@@ -30,6 +33,11 @@ public class PlayerMovement : MonoBehaviour
         _inputProvider.PlayerActions.Jump.performed += _buffer.PerformedListener;
     }
 
+    private void OnEnable()
+    {
+        _coyoteTimeLeft = coyoteTime;
+    }
+
     private void Update()
     {
         bool isGrounded = _controller.isGrounded;
@@ -39,17 +47,25 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = new(axis.x, 0f, axis.y);
         velocity *= moveSpeed * Time.deltaTime;
 
-        // Make sure that acceleration is the same for different frame rates
         if (!isGrounded)
         {
-            float halfGravity = gravity * Time.deltaTime * 0.5f;
+            if (_coyoteTimeLeft > 0f && _velocityY <= 0e-5f)
+            {
+                _coyoteTimeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                // Make sure that acceleration is the same for different frame rates
+                float halfGravity = gravity * Time.deltaTime * 0.5f;
 
-            _velocityY -= halfGravity;
-            velocity.y = _velocityY * Time.deltaTime;
-            _velocityY -= halfGravity;
+                _velocityY -= halfGravity;
+                velocity.y = _velocityY * Time.deltaTime;
+                _velocityY -= halfGravity;
+            }
         }
         else
         {
+            _coyoteTimeLeft = coyoteTime;
             _velocityY = Mathf.Max(0f, _velocityY);
         }
         _velocityY = Mathf.Min(_velocityY, maxVelocityY);
@@ -71,8 +87,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool TryJump()
     {
-        if (_controller.isGrounded)
+        if (_controller.isGrounded || _coyoteTimeLeft > 0f)
         {
+            _coyoteTimeLeft = 0f;
             SetJumpForce(jumpForce);
             return true;
         }
