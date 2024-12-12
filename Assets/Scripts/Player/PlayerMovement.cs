@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _coyoteTimeLeft;
     private float _velocityY;
+    private Vector3 _velocity;
     private InputBuffer _buffer;
 
     private bool _isInSprint = false;
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTime = 0.2f;
 
     public bool IsGroundedCoyoteTime => _controller.isGrounded || _coyoteTimeLeft > 0f;
+
+    public Vector3 CurrentVelocity => _velocity;
 
     private void Awake()
     {
@@ -56,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 axis = _inputProvider.PlayerActions.Move.ReadValue<Vector2>();
 
         Vector3 velocity = new(axis.x, 0f, axis.y);
-        velocity *= moveSpeed * Time.deltaTime;
+        velocity *= moveSpeed;
 
         if (_isInSprint && IsGroundedCoyoteTime && axis.y > 0f)
         {
@@ -75,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
                 float halfGravity = gravity * Time.deltaTime * 0.5f;
 
                 _velocityY -= halfGravity;
-                velocity.y = _velocityY * Time.deltaTime;
+                velocity.y = _velocityY;
                 _velocityY -= halfGravity;
             }
         }
@@ -85,6 +88,11 @@ public class PlayerMovement : MonoBehaviour
             _velocityY = Mathf.Max(0f, _velocityY);
         }
         _velocityY = Mathf.Min(_velocityY, maxVelocityY);
+
+        // Update public property only
+        _velocity = velocity;
+
+        velocity *= Time.deltaTime;
 
         Vector3 transformedDirection = transform.TransformDirection(velocity);
         var collisionFlags = _controller.Move(transformedDirection);
