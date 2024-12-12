@@ -911,6 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+  sprintBoost: 1.7
   gravity: 9.8
   maxVelocityY: 20
   coyoteTime: 0.2

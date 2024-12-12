@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -10,8 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private float _velocityY;
     private InputBuffer _buffer;
 
+    private bool _isInSprint = false;
+
     [SerializeField, Min(0f)]
     private float moveSpeed;
+    [SerializeField, Min(1f)]
+    private float sprintBoost = 1.5f;
     [SerializeField, Min(0f)]
     private float gravity = 9.8f;
     [SerializeField, Min(0f)]
@@ -23,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)]
     private float jumpBufferTime = 0.2f;
 
+    public bool isGroundedCoyoteTime => _controller.isGrounded || _coyoteTimeLeft > 0f;
+
     private void Awake()
     {
         _inputProvider = GetComponentInParent<InputProvider>();
@@ -31,10 +38,14 @@ public class PlayerMovement : MonoBehaviour
         _buffer = new InputBuffer(_ => TryJump(), this, jumpBufferTime);
 
         _inputProvider.PlayerActions.Jump.performed += _buffer.PerformedListener;
+
+        _inputProvider.PlayerActions.Sprint.started += OnSprintStarted;
+        _inputProvider.PlayerActions.Sprint.canceled += OnSprintEnded;
     }
 
     private void OnEnable()
     {
+        _isInSprint = false;
         _coyoteTimeLeft = coyoteTime;
     }
 
@@ -46,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = new(axis.x, 0f, axis.y);
         velocity *= moveSpeed * Time.deltaTime;
+
+        if (_isInSprint && isGroundedCoyoteTime && axis.y > 0f)
+        {
+            velocity.z *= sprintBoost;
+        }
 
         if (!isGrounded)
         {
@@ -85,9 +101,19 @@ public class PlayerMovement : MonoBehaviour
         _velocityY = force;
     }
 
+    private void OnSprintStarted(InputAction.CallbackContext obj)
+    {
+        _isInSprint = true;
+    }
+
+    private void OnSprintEnded(InputAction.CallbackContext obj)
+    {
+        _isInSprint = false;
+    }
+
     private bool TryJump()
     {
-        if (_controller.isGrounded || _coyoteTimeLeft > 0f)
+        if (isGroundedCoyoteTime)
         {
             _coyoteTimeLeft = 0f;
             SetJumpForce(jumpForce);
