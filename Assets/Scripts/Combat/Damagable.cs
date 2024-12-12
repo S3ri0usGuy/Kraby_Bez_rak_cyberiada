@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Damagable : MonoBehaviour
@@ -25,34 +26,34 @@ public class Damagable : MonoBehaviour
     public event Action<Damagable> Died;
 
     [SerializeField]
-    private float healthRegenerationRate = 1f; //punkty zycia na sekunde
+    private int healthRegenerationRate; //punkty zycia na sekunde
+    [SerializeField]
     private float regenerationCooldown = 5f; // Czas po ktoryn regeneracja  sie aktywuje
-    private void OnDeath
-    (
-        //wywolanie eksplozji
-        Instantiate(deathExplosionPrefab, transform.position, Quaterion.identify);
-        //dodatkowo mozna zniszczyc obiekt
-        Destroy(ganeObject)
-    )
-    private void Update()
-    {
-        if (IsAlive && Time.time - lastDamegeTime  >= regenerationCooldown)
-        {
-            Heal((int)(healthRegenerationRate * Time.deltaTime));
-        }
-    } 
 
-    public void Heal(int HealValue)
-    {
-        if(!IsAlive) return;
-
-        _hp = Math.Min (_hp + healValue, maxHp)
-        CallHpChangedEvent();
-    }
 
     private void OnEnable()
     {
-        Hp = maxHp;
+        if (healthRegenerationRate > 0)
+        {
+            StartCoroutine(Regenerate());
+        }
+    }
+
+    private IEnumerator Regenerate()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenerationCooldown);
+            Heal(healthRegenerationRate);
+        }
+    }
+
+    public void Heal(int healValue)
+    {
+        if (!IsAlive) return;
+
+        _hp = Math.Min(_hp + healValue, maxHp);
+        CallHpChangedEvent();
     }
 
     private void CallHpChangedEvent()
@@ -60,12 +61,14 @@ public class Damagable : MonoBehaviour
         HpChanged?.Invoke(this);
     }
 
-    public void InflictDamage(int damageValue)
+    public void InflictDamage(int damageValue, DamageType damageType)
     {
         if (!IsAlive) return;
 
         if (damageValue < 0)
             throw new ArgumentOutOfRangeException(nameof(damageValue));
+
+        // tu mozna dodac fizyke obrazen jezeli ktos ma pomysk to zostawiam otwarta sciezke
 
         _hp -= damageValue;
         Damaged?.Invoke(this, damageValue);
@@ -73,26 +76,12 @@ public class Damagable : MonoBehaviour
         {
             Died?.Invoke(this);
         }
-
         CallHpChangedEvent();
     }
 
-    public void InflictDamage(int damageValue, DamageTyoe damageTyoe)
-    {
-        if (!IsAlive) return;
-        // tu mozna dodac fizyke obrazen jezeli ktos ma pomysk to zostawiam otwarta sciezke
-
-        _hp -= damageValue
-        Danaged?.Invoke(this, damageValue);
-        if ( _hp <= 0)
-        {
-            Died?.Invoke(this):
-        }
-    }
-    
 }
 
-public enum DamageTyoe
+public enum DamageType
 {
     Physical,
     Shot
