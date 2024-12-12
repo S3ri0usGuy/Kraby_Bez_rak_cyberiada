@@ -915,7 +915,7 @@ MonoBehaviour:
   gravity: 9.8
   maxVelocityY: 20
   coyoteTime: 0.2
-  jumpForce: 6
+  jumpForce: 4.5
   jumpBufferTime: 0.2
 --- !u!143 &1061344716
 CharacterController:

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)]
     private float jumpBufferTime = 0.2f;
 
-    public bool isGroundedCoyoteTime => _controller.isGrounded || _coyoteTimeLeft > 0f;
+    public bool IsGroundedCoyoteTime => _controller.isGrounded || _coyoteTimeLeft > 0f;
 
     private void Awake()
     {
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = new(axis.x, 0f, axis.y);
         velocity *= moveSpeed * Time.deltaTime;
 
-        if (_isInSprint && isGroundedCoyoteTime && axis.y > 0f)
+        if (_isInSprint && IsGroundedCoyoteTime && axis.y > 0f)
         {
             velocity.z *= sprintBoost;
         }
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool TryJump()
     {
-        if (isGroundedCoyoteTime)
+        if (IsGroundedCoyoteTime)
         {
             _coyoteTimeLeft = 0f;
             SetJumpForce(jumpForce);
