@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4296980204220473748}
   - component: {fileID: 865099936525226808}
-  - component: {fileID: 4565689992189722213}
+  - component: {fileID: 5535069935465351445}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.96935576, y: 1, z: 1}
   m_Center: {x: -0.015322113, y: 2.6773145e-10, z: -0.0000000022298041}
---- !u!114 &4565689992189722213
+--- !u!114 &5535069935465351445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5147479104652893132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1020d5cbf344f694ebf51d0077ba0ea9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5eac0b4135ea43747a7d52a9e220e7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myDoor: {fileID: 5348151705380936384}
@@ -124,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 63a24e2ff08317b4d8893d6afe432741, type: 3}
       propertyPath: m_Name
-      value: Drzwi
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
