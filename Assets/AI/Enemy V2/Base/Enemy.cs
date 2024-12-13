@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
 {//interface tutaj daja cechy ppprzeciwnikowi bo nie kazdy przeciwnik musi miec wszystkie
-    [field: SerializeField] public float MaxHealth { get; set; } = 100f;
-    public float CurrentHealth { get; set; }
+    [field: SerializeField] public int MaxHealth { get; set; } = 100;
+    public int CurrentHealth { get; set; }
     public Rigidbody RB { get; set; }
     public bool isAggroed { get ; set ; }
     public bool isWithinStrikingDistance { get; set; }
@@ -47,11 +47,11 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
     {
         stateMachine.CurrentEnemyState.PhiscsUpdate();
     }
-    public void Damage(float damageAmount)// system hp i damage
+    public void Damage(int damageAmount)// system hp i damage
     {
         CurrentHealth -= damageAmount;
 
-        if (CurrentHealth >= 0f)
+        if (CurrentHealth >= 0)
         {
             Die();
         }

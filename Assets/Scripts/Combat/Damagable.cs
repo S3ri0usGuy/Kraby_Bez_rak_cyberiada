@@ -7,7 +7,7 @@ public class Damagable : MonoBehaviour
     private int _hp;
 
     [SerializeField, Min(1)]
-    private int maxHp = 100;
+    public int maxHp = 100;
 
     public int Hp
     {
