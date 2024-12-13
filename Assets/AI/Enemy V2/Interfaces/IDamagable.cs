@@ -3,10 +3,10 @@ using UnityEngine;
 public interface IDamagable
 {
     
-    void Damage(float damageAmount);
+    void Damage(int damageAmount);
 
     void Die();
 
-    float MaxHealth { get; set; }
-    float CurrentHealth { get; set; }
+    int MaxHealth { get; set; }
+    int CurrentHealth { get; set; }
 }
