@@ -109,7 +109,7 @@ public class PlayerCombat : MonoBehaviour
     public void Shoot()
     {
         CombatUtils.Shoot(bulletsOrigin.position, bulletsOrigin.forward,
-            shootingParams, shootingLayerMask, trailsOrigin.position);
+            shootingParams, shootingLayerMask, trailsOrigin.position); 
 
         playerRotation.AddRecoil(recoil.x, recoil.y);
 

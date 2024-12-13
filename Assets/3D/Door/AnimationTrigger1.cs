@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimationTrigger : MonoBehaviour
+public class AnimationTrigger1 : MonoBehaviour
 {
     [SerializeField] private Animator myDoor;
     [SerializeField] private string doorOpen = "DoorOpen";
