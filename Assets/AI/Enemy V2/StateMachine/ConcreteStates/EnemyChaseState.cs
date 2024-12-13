@@ -28,7 +28,8 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
+        
+        enemy.EnemyLookAt(_playerTransform.position);
         Vector3 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
         enemy.MoveEnemy(moveDirection * _MovementSpeed);
         
