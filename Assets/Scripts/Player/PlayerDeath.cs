@@ -8,12 +8,14 @@ public class PlayerDeath : MonoBehaviour
     private Damagable _damagable;
 
     private Animator _animator;
+    private InputProvider _inputProvider;
 
     [SerializeField]
     private float deathTimer = 3f;
 
     private void Awake()
     {
+        _inputProvider = GetComponentInParent<InputProvider>();
         _damagable = GetComponent<Damagable>();
         _animator = GetComponent<Animator>();
         _damagable.Died += OnDied;
@@ -21,6 +23,7 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnDied(Damagable damagable)
     {
+        _inputProvider.enabled = false;
         _animator.SetTrigger("death");
         StartCoroutine(ReloadScene());
     }
