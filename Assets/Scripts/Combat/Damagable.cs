@@ -8,7 +8,7 @@ public class Damagable : MonoBehaviour, IDamagable
     private int _hp;
     private float _regenerateTimer;
 
-    string currentSceneName = SceneManager.GetActiveScene().name;
+    private string currentSceneName = SceneManager.GetActiveScene().name;
     private float _DeathTimer;
 
     [SerializeField, Min(1)]
@@ -39,6 +39,7 @@ public class Damagable : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
+
         Hp = maxHp;
         if (healthRegenerationRate > 0)
         {
