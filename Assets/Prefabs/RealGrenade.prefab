@@ -279,7 +279,7 @@ MonoBehaviour:
   explosionDelay: 3
   explosionRadius: 5
   damage: 250
-  damageToPlayer: 50
+  damageToPlayer: 75
   explosionEffect: {fileID: 4954498154907210217, guid: b8ad001286e76bb4abd6069d7e41a93c, type: 3}
   explosionLayers:
     serializedVersion: 2
