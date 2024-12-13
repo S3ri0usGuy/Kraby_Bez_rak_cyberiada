@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6635547049568743477}
   - component: {fileID: 1185831208871715918}
   - component: {fileID: 8600702723445761009}
+  - component: {fileID: 8356418227908972703}
   m_Layer: 0
   m_Name: Blood_Impact
   m_TagString: Untagged
@@ -225,3 +226,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8356418227908972703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4954498154907210217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9fe50e68c5a2f4bb3c9d5c848ac10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitch: 0.95
+  maxPitch: 1.05
