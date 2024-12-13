@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9fe50e68c5a2f4bb3c9d5c848ac10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 0.95
-  maxPitch: 1.05
+  minPitch: 0.85
+  maxPitch: 0.95
 --- !u!114 &5015573708669191016
 MonoBehaviour:
   m_ObjectHideFlags: 0
