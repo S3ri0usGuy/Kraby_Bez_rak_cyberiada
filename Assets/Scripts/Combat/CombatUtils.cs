@@ -2,7 +2,6 @@ using UnityEngine;
 
 public static class CombatUtils
 {
-
     /// <summary>
     /// Shoots a "bullet" in the set direction.
     /// </summary>
@@ -51,8 +50,22 @@ public static class CombatUtils
         Vector3 trailEnd;
 
         // Cast a ray in the set direction
-        if (Physics.Raycast(ray, out var hit, shootingParams.maxDistance,
-            layerMask, QueryTriggerInteraction.Collide))
+
+        bool cast;
+        RaycastHit hit;
+
+        if (Mathf.Approximately(shootingParams.radius, 0f))
+        {
+            cast = Physics.SphereCast(ray, shootingParams.radius, out hit, shootingParams.maxDistance,
+            layerMask, QueryTriggerInteraction.Collide);
+        }
+        else
+        {
+            cast = Physics.Raycast(ray, out hit, shootingParams.maxDistance,
+            layerMask, QueryTriggerInteraction.Collide);
+        }
+
+        if (cast)
         {
             if (hit.collider.TryGetComponent(out damagable))
             {

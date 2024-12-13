@@ -20,18 +20,22 @@ public struct ShootingParams
     /// </summary>
     public int damage;
 
+    public float radius;
+
     /// <summary>
     /// Prefab of the bullet trail used.
     /// </summary>
     public BulletTrail trailPrefab;
 
-    public ShootingParams(float maxDistance, float horizontalSpread, float verticalSpread, int damage, BulletTrail trailPrefab)
+    public ShootingParams(float maxDistance, float horizontalSpread,
+        float verticalSpread, int damage, BulletTrail trailPrefab, float radius)
     {
         this.maxDistance = maxDistance;
         this.horizontalSpread = horizontalSpread;
         this.verticalSpread = verticalSpread;
         this.damage = damage;
         this.trailPrefab = trailPrefab;
+        this.radius = radius;
     }
 
     // Builder pattern:
@@ -39,18 +43,18 @@ public struct ShootingParams
     public readonly ShootingParams MultiplySpread(float multiplier)
     {
         return new(maxDistance, horizontalSpread * multiplier,
-            verticalSpread * multiplier, damage, trailPrefab);
+            verticalSpread * multiplier, damage, trailPrefab, radius);
     }
 
     public readonly ShootingParams MultiplyDistance(float multiplier)
     {
         return new(maxDistance * multiplier, horizontalSpread,
-            verticalSpread, damage, trailPrefab);
+            verticalSpread, damage, trailPrefab, radius);
     }
 
     public readonly ShootingParams MultiplyDamage(float multiplier)
     {
         return new(maxDistance, horizontalSpread, verticalSpread,
-            (int)(damage * multiplier), trailPrefab);
+            (int)(damage * multiplier), trailPrefab, radius);
     }
 }
