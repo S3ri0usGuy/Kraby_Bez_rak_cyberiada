@@ -15,11 +15,18 @@ public class PlayerCombat : MonoBehaviour
     private int magazineCapacity = 8;
 
     [SerializeField]
+    private Transform bulletsOrigin;
+    [SerializeField]
+    private LayerMask shootingLayerMask = -1;
+
+    [SerializeField]
     private Grenade grenadePrefab;
     [SerializeField]
     private Transform grenadeOrigin;
     [SerializeField]
     private Transform grenadePosition;
+    [SerializeField]
+    private ShootingParams shootingParams;
 
     /// <summary>
     /// Gets/sets a current number of bullets in the magazine.
@@ -93,7 +100,8 @@ public class PlayerCombat : MonoBehaviour
     // Called by animation
     public void Shoot()
     {
-        // Raycast or some other bullshit
+        CombatUtils.Shoot(bulletsOrigin.position, bulletsOrigin.forward,
+            shootingParams, shootingLayerMask);
 
         BulletsInMagazine--;
     }
