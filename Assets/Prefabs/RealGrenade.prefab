@@ -126,11 +126,13 @@ MonoBehaviour:
   throwForce: 10
   explosionDelay: 3
   explosionRadius: 5
-  damage: 50
-  explosionEffect: {fileID: 0}
+  damage: 250
+  damageToPlayer: 50
+  explosionEffect: {fileID: 4954498154907210217, guid: b8ad001286e76bb4abd6069d7e41a93c, type: 3}
   explosionLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4223
+  angular: 5
 --- !u!136 &2967653145142364386
 CapsuleCollider:
   m_ObjectHideFlags: 0

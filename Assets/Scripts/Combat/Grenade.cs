@@ -10,12 +10,17 @@ public class Grenade : MonoBehaviour
     [SerializeField]
     private float explosionRadius = 5f;//promien wybuchu
     [SerializeField]
-    private int damage = 50;// zadawane obrazenia
+    private int damage = 100;// zadawane obrazenia
+    [SerializeField]
+    private int damageToPlayer = 50;
     [SerializeField]
     private GameObject explosionEffect; // Prefab efektu wybuchu
 
     [SerializeField]
     private LayerMask explosionLayers = -1;
+
+    [SerializeField]
+    private float angular = 90f;
 
     private Rigidbody rb;
 
@@ -27,6 +32,7 @@ public class Grenade : MonoBehaviour
     public void Throw(Vector3 direction)
     {
         rb.AddForce(direction * throwForce, ForceMode.Impulse);
+        rb.AddTorque(Random.onUnitSphere * Random.Range(0f, angular), ForceMode.Impulse);
         StartCoroutine(ExplodeAfterDelay());
     }
 
@@ -51,7 +57,8 @@ public class Grenade : MonoBehaviour
         {
             if (collider.TryGetComponent(out IDamagable damagable))
             {
-                damagable.InflictDamage(damage, DamageType.Shot);
+                bool isPlayer = collider.gameObject.CompareTag("Player");
+                damagable.InflictDamage(isPlayer ? damageToPlayer : damage, DamageType.Shot);
             }
         }
 
