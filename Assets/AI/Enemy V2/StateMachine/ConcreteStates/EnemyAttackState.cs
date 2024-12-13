@@ -5,11 +5,14 @@ public class EnemyAttackState : EnemyState
     private Transform _playerTransform;
 
     private float _timer;
-    private float _timeBetweenShoots = 2f;
+    private float _timeBetweenShoots = 0.4f;
+    private float _minTimeBetweenShoots = 0.4f;
+    private float _maxTimeBetweenShoots = 1f;
 
     private float _exitTimer;
     private float _tiemTillExit;
     private float _distanceToCountExit = 3f;
+
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -24,6 +27,7 @@ public class EnemyAttackState : EnemyState
     {
         base.EnterState();
         Debug.Log("Enemy: attackstate");
+        _timeBetweenShoots = Random.Range(_minTimeBetweenShoots, _maxTimeBetweenShoots);
     }
 
     public override void ExitState()
@@ -41,18 +45,18 @@ public class EnemyAttackState : EnemyState
         if (_timer > _timeBetweenShoots)
         {
             _timer = 0f;
+            _timeBetweenShoots = Random.Range(_minTimeBetweenShoots, _maxTimeBetweenShoots);
 
             Vector3 dir = (_playerTransform.position - enemy.transform.position).normalized;
 
-            //tu kurwa attack debile trzeba przerobiæ na projectile lub raycast 
-            Debug.Log("Enemy: pew pew");
+            enemy.animator.SetTrigger("shoot");
         }
 
-        if (Vector3.Distance(_playerTransform.position, enemy.transform.position)>_distanceToCountExit)
+        if (Vector3.Distance(_playerTransform.position, enemy.transform.position) > _distanceToCountExit)
         {
             _exitTimer += Time.deltaTime;
 
-            if(_exitTimer > _tiemTillExit)
+            if (_exitTimer > _tiemTillExit)
             {
                 enemy.stateMachine.ChangeState(enemy.chaseState);
             }

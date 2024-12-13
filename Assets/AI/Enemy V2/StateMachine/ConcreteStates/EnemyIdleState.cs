@@ -18,7 +18,7 @@ public class EnemyIdleState : EnemyState
     {
         base.EnterState();
         Debug.Log("Enemy: idlestate");
-        _targetPos = GetRandomPointInSphere();
+        //_targetPos = GetRandomPointInSphere();
        
     }
 
@@ -37,6 +37,7 @@ public class EnemyIdleState : EnemyState
             enemy.stateMachine.ChangeState(enemy.chaseState);
         }// jeœli nie jest agro bêdzie ³azi³ w losowe miejsca pathfinding do zajebania ale to bardziej w chase,
 
+        /*
         _direction = (_targetPos - enemy.transform.position).normalized;
 
         enemy.MoveEnemy(_direction * enemy.randomMovementSpeed);
@@ -44,15 +45,15 @@ public class EnemyIdleState : EnemyState
         {
             _targetPos = GetRandomPointInSphere();
             Debug.Log("Enemy : changed pos, destination reached");
-        }
+        }*/
     }
 
     public override void PhiscsUpdate()
     {
         base.PhiscsUpdate();
     }
-    private Vector3 GetRandomPointInSphere()
+    /*private Vector3 GetRandomPointInSphere()
     {
         return enemy.transform.position + (Vector3)UnityEngine.Random.insideUnitSphere * enemy.randomMovementRange;
-    }
+    }*/
 }

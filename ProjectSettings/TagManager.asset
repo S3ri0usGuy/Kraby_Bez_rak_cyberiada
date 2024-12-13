@@ -15,9 +15,9 @@ TagManager:
   - Grenade_Player
   - 
   - 
-  - 
-  - 
-  - 
+  - Trigger
+  - Enemy_Hitbox
+  - Enemy_Movement
   - 
   - 
   - 
