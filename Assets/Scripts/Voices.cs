@@ -56,7 +56,5 @@ public class RandomSoundPlayer : MonoBehaviour
         int randomIndex = Random.Range(0, soundEffects.Length);
         audioSource.clip = soundEffects[randomIndex];
         audioSource.Play();
-
-        Debug.Log($"Odtwarzanie dŸwiêku: {soundEffects[randomIndex].name}"); // Loguj nazwê odtwarzanego dŸwiêku
     }
 }
