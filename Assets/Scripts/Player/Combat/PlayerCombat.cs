@@ -14,6 +14,13 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private int magazineCapacity = 8;
 
+    [SerializeField]
+    private Grenade grenadePrefab;
+    [SerializeField]
+    private Transform grenadeOrigin;
+    [SerializeField]
+    private Transform grenadePosition;
+
     /// <summary>
     /// Gets/sets a current number of bullets in the magazine.
     /// </summary>
@@ -47,6 +54,7 @@ public class PlayerCombat : MonoBehaviour
 
         _inputProvider.PlayerActions.Attack.performed += OnAttackPerformed;
         _inputProvider.PlayerActions.Reload.performed += OnReloadPerformed;
+        _inputProvider.PlayerActions.Grenade.performed += OnGrenadeThrowPerformed;
     }
 
     private void StartReloading()
@@ -75,6 +83,13 @@ public class PlayerCombat : MonoBehaviour
         _animator.SetTrigger("shoot");
     }
 
+    private void OnGrenadeThrowPerformed(InputAction.CallbackContext obj)
+    {
+        if (_isReloading) return;
+
+        _animator.SetTrigger("grenade");
+    }
+
     // Called by animation
     public void Shoot()
     {
@@ -88,5 +103,13 @@ public class PlayerCombat : MonoBehaviour
     {
         _isReloading = false;
         BulletsInMagazine = magazineCapacity;
+    }
+
+    // Called by animation
+    public void ThrowGrenade()
+    {
+        Grenade grenade = Instantiate(grenadePrefab,
+            grenadePosition.position, grenadePosition.rotation);
+        grenade.Throw(grenadeOrigin.forward);
     }
 }
