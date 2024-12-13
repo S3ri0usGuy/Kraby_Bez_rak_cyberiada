@@ -35,6 +35,7 @@ public class Damagable : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
+
         Hp = maxHp;
         if (healthRegenerationRate > 0)
         {
