@@ -3,18 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-	public void PlayGame()
-	{
-		SceneManager.LoadSceneAsync("Mapa");
-	}
-	/*public void OpenSettings()
+    private void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1f;
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadSceneAsync("Mapa");
+    }
+    /*public void OpenSettings()
 	{
 		SettingsManager.setActive;
 	}*/
 
-	public void Quit()
-	{
-		Application.Quit();
-	}
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
 }
