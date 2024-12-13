@@ -132,7 +132,7 @@ MonoBehaviour:
   explosionLayers:
     serializedVersion: 2
     m_Bits: 4223
-  angular: 25
+  angular: 5
 --- !u!136 &2967653145142364386
 CapsuleCollider:
   m_ObjectHideFlags: 0
