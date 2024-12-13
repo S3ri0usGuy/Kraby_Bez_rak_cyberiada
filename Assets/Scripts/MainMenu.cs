@@ -3,7 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-	public void PlayGame()
+    private void Awake()
+    {
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void PlayGame()
 	{
 		SceneManager.LoadSceneAsync("Mapa");
 	}
