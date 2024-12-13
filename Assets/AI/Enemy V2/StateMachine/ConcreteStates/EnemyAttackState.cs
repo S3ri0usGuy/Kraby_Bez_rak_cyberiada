@@ -35,6 +35,7 @@ public class EnemyAttackState : EnemyState
     {
         base.FrameUpdate();
 
+        enemy.EnemyLookAt(_playerTransform.position);
         enemy.MoveEnemy(Vector3.zero);
 
         if (_timer > _timeBetweenShoots)

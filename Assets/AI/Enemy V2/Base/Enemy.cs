@@ -64,6 +64,11 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
 
     #region Movement Functions
     //TODO dodaæ patrzenie w kierunku gracza lub w losowym kierunku zarówno tu jak i w interface IEnemy movable
+    public void EnemyLookAt(Vector3 lookat)
+    {
+        lookat.y = transform.position.y;
+        transform.LookAt(lookat);
+    }
     public void MoveEnemy(Vector3 velocity)// funkcja która porusza rigid body które jest w enemy poprzez nadanie mu velocity, kiedy chcesz ruszyæ przeciwnikiem calluj t¹ funkcje
     {
         RB.linearVelocity = velocity;
@@ -91,7 +96,6 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
         stateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType); // umo¿liwia wykonywanie eventów i rzeczy na podstawie animacji
     }
 
-    
 
     public enum AnimationTriggerType
     {
