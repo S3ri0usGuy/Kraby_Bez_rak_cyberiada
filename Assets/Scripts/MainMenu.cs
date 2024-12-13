@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
 	{
 		SceneManager.LoadSceneAsync("Mapa");
 	}
+	public void OpenSettings()
+	{
+		SettingsManager.SetActive(true);
+	}
 
 	public void Quit()
 	{
