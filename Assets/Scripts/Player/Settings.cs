@@ -30,10 +30,22 @@ public class SettingsManager : MonoBehaviour
             volumeSlider.value = PlayerPrefs.GetFloat("Volume");
             SetVolume(volumeSlider.value);
         }
+        else
+        {
+            // Ustaw domyślną wartość głośności, jeśli nie została wcześniej ustawiona
+            volumeSlider.value = 1.0f; // 100% głośności
+            SetVolume(volumeSlider.value);
+        }
 
         if (PlayerPrefs.HasKey("Brightness"))
         {
             brightnessSlider.value = PlayerPrefs.GetFloat("Brightness");
+            SetBrightness(brightnessSlider.value);
+        }
+        else
+        {
+            // Ustaw domyślną wartość jasności, jeśli nie została wcześniej ustawiona
+            brightnessSlider.value = 1.0f; // 100% jasności
             SetBrightness(brightnessSlider.value);
         }
     }
@@ -46,8 +58,7 @@ public class SettingsManager : MonoBehaviour
     private void SetBrightness(float brightness)
     {
         // Ustaw jasność (możesz to dostosować do swojego systemu oświetlenia)
-        // Przykład: zmiana jasności materiału
-        // RenderSettings.ambientLight = Color.white * brightness;
+        RenderSettings.ambientLight = Color.white * brightness; // Ustaw jasność otoczenia
     }
 
     private void OnDestroy()
