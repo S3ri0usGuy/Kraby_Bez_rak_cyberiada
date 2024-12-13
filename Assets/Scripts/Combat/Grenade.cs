@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
+    private bool dropped = false;
+
     [SerializeField]
     private float throwForce = 10f; //sila rzutu granatem
     [SerializeField]
@@ -23,6 +25,9 @@ public class Grenade : MonoBehaviour
     private float angular = 90f;
 
     private Rigidbody rb;
+
+    [SerializeField]
+    private PitchShifter dropSound;
 
     private void Awake()
     {
@@ -64,6 +69,15 @@ public class Grenade : MonoBehaviour
 
         //zniszczenie granatu po wybuchu
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!dropped)
+        {
+            dropSound.PlaySound();
+        }
+        dropped = true;
     }
 
     private void OnDrawGizmosSelected()

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4954498154907210217, guid: 855ae63ac96b515429353e2539f2b7e8, type: 3}
       propertyPath: m_Name
-      value: Blood_Impact Variant
+      value: Enemy_Death_Vfx
       objectReference: {fileID: 0}
     - target: {fileID: 7204560460963723250, guid: 855ae63ac96b515429353e2539f2b7e8, type: 3}
       propertyPath: m_LocalScale.x
@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8600702723445761009, guid: 855ae63ac96b515429353e2539f2b7e8, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fd4e9935d6d1594ab7b54b1b58a7c80, type: 3}
+    - target: {fileID: 8600702723445761009, guid: 855ae63ac96b515429353e2539f2b7e8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fd4e9935d6d1594ab7b54b1b58a7c80, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
