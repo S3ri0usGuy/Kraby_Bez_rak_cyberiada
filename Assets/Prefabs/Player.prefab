@@ -317,7 +317,7 @@ MonoBehaviour:
     maxDistance: 100
     horizontalSpread: 1
     verticalSpread: 1
-    damage: 12
+    damage: 35
     trailPrefab: {fileID: 3240953442090162697, guid: bfc035bc31c7d6642a544ef478ea1eaf, type: 3}
 --- !u!1 &2175722936725451782
 GameObject:
