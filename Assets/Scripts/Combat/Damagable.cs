@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Damagable : MonoBehaviour, IDamagable
 {
     private int _hp;
     private float _regenerateTimer;
+
+    string currentSceneName = SceneManager.GetActiveScene().name;
+    private float _DeathTimer;
 
     [SerializeField, Min(1)]
     private int maxHp = 100;
@@ -89,6 +93,12 @@ public class Damagable : MonoBehaviour, IDamagable
         if (_hp <= 0)
         {
             Died?.Invoke(this);
+
+            _DeathTimer += Time.time;
+            if(_DeathTimer >= 3f)
+            {
+                SceneManager.LoadScene(currentSceneName);
+            }
         }
         CallHpChangedEvent();
         _regenerateTimer = 0f;
