@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class winCondition : MonoBehaviour
 {
+    private bool won = false;
     private InputProvider _inputProvider;
 
     public Canvas canvas;
@@ -17,8 +18,12 @@ public class winCondition : MonoBehaviour
         _inputProvider.PlayerActions.Win.performed += OnWinPerformed;
     }
 
-    private void OnWinPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void Win()
     {
+        if (won) return;
+
+        won = true;
+
         _inputProvider.gameObject.SetActive(false);
         canvas.gameObject.SetActive(true);
 
@@ -28,10 +33,23 @@ public class winCondition : MonoBehaviour
         StartCoroutine(Delay());
     }
 
+    private void OnWinPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Win();
+    }
+
     private IEnumerator Delay()
     {
         yield return new WaitForSecondsRealtime(time);
 
         SceneManager.LoadScene("Main_Menu");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Win();
+        }
     }
 }
