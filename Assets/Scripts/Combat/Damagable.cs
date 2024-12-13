@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Damagable : MonoBehaviour
+public class Damagable : MonoBehaviour, IDamagable
 {
     private int _hp;
 
     [SerializeField, Min(1)]
-    public int maxHp = 100;
+    private int maxHp = 100;
 
     public int Hp
     {
@@ -18,6 +18,8 @@ public class Damagable : MonoBehaviour
             CallHpChangedEvent();
         }
     }
+
+    public int MaxHp => maxHp;
 
     public bool IsAlive => _hp > 0;
 
@@ -79,6 +81,10 @@ public class Damagable : MonoBehaviour
         CallHpChangedEvent();
     }
 
+    public void Damage(int damageAmount)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public enum DamageType

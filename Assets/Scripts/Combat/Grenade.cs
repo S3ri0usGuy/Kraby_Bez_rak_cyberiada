@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (collider.TryGetComponent(out Damagable damagable))
+            if (collider.TryGetComponent(out IDamagable damagable))
             {
                 damagable.InflictDamage(damage, DamageType.Shot);
             }

@@ -309,7 +309,7 @@ MonoBehaviour:
   trailsOrigin: {fileID: 4633176578337138812}
   shootingLayerMask:
     serializedVersion: 2
-    m_Bits: 191
+    m_Bits: 2239
   grenadePrefab: {fileID: 9118960845334917634, guid: fb37187dd00d39b4792f2cb137ba7010, type: 3}
   grenadeOrigin: {fileID: 8171492102832636368}
   grenadePosition: {fileID: 6869206373669307740}
@@ -1017,7 +1017,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 7415
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
