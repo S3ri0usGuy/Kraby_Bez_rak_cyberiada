@@ -10,7 +10,7 @@ public class RandomSoundPlayer : MonoBehaviour
     {
         // Dodaj komponent AudioSource do tego obiektu
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false; // Upewnij siê, ¿e nie odtwarza siê na pocz¹tku
+        audioSource.playOnAwake = true; // Upewnij siê, ¿e nie odtwarza siê na pocz¹tku
 
         // Rozpocznij coroutine do odtwarzania dŸwiêków w losowych odstêpach
         StartCoroutine(PlayRandomSounds());
