@@ -13,8 +13,14 @@ public sealed class InputProvider : MonoBehaviour
         _actions = new();
     }
 
+    private void OnDestroy()
+    {
+        _actions.Disable();
+    }
+
     private void OnEnable()
     {
+        _actions.Disable();
         _actions.Enable();
     }
 
