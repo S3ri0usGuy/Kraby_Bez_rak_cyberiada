@@ -34,10 +34,10 @@ public class PlayerRotation : MonoBehaviour
     {
         Vector2 axis = _inputProvider.PlayerActions.Look.ReadValue<Vector2>();
 
-        float dAngleHorizontal = horizontalSensitivity * axis.x * Time.deltaTime;
+        float dAngleHorizontal = horizontalSensitivity * axis.x;
         transform.Rotate(Vector3.up * dAngleHorizontal);
 
-        float dAngleVertical = verticalSensitivity * axis.y * Time.deltaTime;
+        float dAngleVertical = verticalSensitivity * axis.y;
         _headEulerX += dAngleVertical;
         _headEulerX = Mathf.Clamp(_headEulerX, minAngleX, maxAngleX);
 

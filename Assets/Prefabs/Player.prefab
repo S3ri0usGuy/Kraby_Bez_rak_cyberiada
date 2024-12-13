@@ -268,8 +268,8 @@ MonoBehaviour:
   head: {fileID: 6502286371804488486}
   minAngleX: -75
   maxAngleX: 50
-  horizontalSensitivity: 18.75
-  verticalSensitivity: -16.25
+  horizontalSensitivity: 0.2
+  verticalSensitivity: -0.2
 --- !u!95 &5935616038687761394
 Animator:
   serializedVersion: 7
