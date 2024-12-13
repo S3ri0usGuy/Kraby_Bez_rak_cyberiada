@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 5250095323815290243}
   - component: {fileID: 643023285413773297}
   - component: {fileID: 5025767187529721512}
-  - component: {fileID: 9143304247622963523}
   - component: {fileID: 3357394407422156733}
   m_Layer: 12
   m_Name: Basic Enemy
@@ -244,28 +243,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &9143304247622963523
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8462302609458850112}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7a09115c550f3484e9ef02d8877c1992, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &3357394407422156733
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -286,9 +263,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.55830836
-  m_Height: 2.5487158
+  m_Height: 2.471489
   m_Direction: 1
-  m_Center: {x: 0, y: 1.2998232, z: -0.058308363}
+  m_Center: {x: 0, y: 1.3384366, z: -0.058308363}
 --- !u!1001 &6047628470143083671
 PrefabInstance:
   m_ObjectHideFlags: 0
