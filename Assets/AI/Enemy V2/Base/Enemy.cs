@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
+public class Enemy : MonoBehaviour, /*IDamagable,*/ IEnemyMovable, ITriggerCheckable
 {//interface tutaj daja cechy ppprzeciwnikowi bo nie kazdy przeciwnik musi miec wszystkie
     [field: SerializeField] public int MaxHealth { get; set; } = 100;
     public int CurrentHealth { get; set; }
