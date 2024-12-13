@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damagable : MonoBehaviour, IDamagable
 {
     private int _hp;
+    private float _regenerateTimer;
 
     [SerializeField, Min(1)]
     private int maxHp = 100;
@@ -38,6 +39,17 @@ public class Damagable : MonoBehaviour, IDamagable
         if (healthRegenerationRate > 0)
         {
             StartCoroutine(Regenerate());
+        }
+        _regenerateTimer = 0f;
+    }
+
+    private void Update()
+    {
+        _regenerateTimer += Time.deltaTime;
+        if (_regenerateTimer >= regenerationCooldown)
+        {
+            Heal(healthRegenerationRate);
+            _regenerateTimer = 0f;
         }
     }
 
@@ -79,11 +91,7 @@ public class Damagable : MonoBehaviour, IDamagable
             Died?.Invoke(this);
         }
         CallHpChangedEvent();
-    }
-
-    public void Damage(int damageAmount)
-    {
-        throw new NotImplementedException();
+        _regenerateTimer = 0f;
     }
 }
 

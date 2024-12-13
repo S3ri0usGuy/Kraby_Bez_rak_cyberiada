@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Hitbox : MonoBehaviour, IDamagable
@@ -7,10 +6,6 @@ public class Hitbox : MonoBehaviour, IDamagable
 
     [SerializeField, Min(0f)]
     private float damageMultiplier = 1f;
-
-    public event Action<Damagable> HpChanged;
-    public event Action<Damagable, int> Damaged;
-    public event Action<Damagable> Died;
 
     private void Awake()
     {
