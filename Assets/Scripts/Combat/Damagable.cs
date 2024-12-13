@@ -30,9 +30,9 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private float regenerationCooldown = 5f; // Czas po ktoryn regeneracja  sie aktywuje
 
-
     private void OnEnable()
     {
+        Hp = maxHp;
         if (healthRegenerationRate > 0)
         {
             StartCoroutine(Regenerate());
