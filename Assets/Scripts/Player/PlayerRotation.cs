@@ -50,4 +50,14 @@ public class PlayerRotation : MonoBehaviour
         headEuler.x = eulerX;
         head.eulerAngles = headEuler;
     }
+
+    public void AddRecoil(float horizontal, float vertical)
+    {
+        float xAngle = Random.Range(-vertical, -vertical * 0.2f);
+        float yAngle = Random.Range(-horizontal, horizontal);
+
+        _headEulerX += xAngle;
+        transform.Rotate(Vector3.up * yAngle);
+
+    }
 }

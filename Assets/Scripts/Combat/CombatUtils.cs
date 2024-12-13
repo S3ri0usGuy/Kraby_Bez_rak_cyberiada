@@ -17,7 +17,7 @@ public static class CombatUtils
     public static Damagable Shoot(Vector3 origin, Vector3 direction,
         ShootingParams shootingParams, LayerMask layerMask)
     {
-        return Shoot(origin, direction, shootingParams, layerMask, origin);
+        return (Damagable)Shoot(origin, direction, shootingParams, layerMask, origin);
     }
 
     /// <summary>
@@ -32,11 +32,11 @@ public static class CombatUtils
     /// An object that was damaged or <see langword="null" /> if missed or hit 
     /// non-damagable object.
     /// </returns>
-    public static Damagable Shoot(Vector3 origin, Vector3 direction,
+    public static IDamagable Shoot(Vector3 origin, Vector3 direction,
         ShootingParams shootingParams, LayerMask layerMask,
         Vector3 trailOrigin)
     {
-        Damagable damagable = null;
+        IDamagable damagable = null;
 
         // Apply spread
         float horizontalSpread = Random.Range(-shootingParams.horizontalSpread, shootingParams.horizontalSpread);

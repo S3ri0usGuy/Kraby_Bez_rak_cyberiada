@@ -27,7 +27,7 @@ public class Healthbar : MonoBehaviour
     {
         if (healthBarImage != null)
         {
-            healthBarImage.fillAmount = (float)damagable.Hp / damagable.maxHp;
+            healthBarImage.fillAmount = (float)damagable.Hp / damagable.MaxHp;
             UpdateHealthBarColor(damagable.Hp);
         }
     }
@@ -36,18 +36,18 @@ public class Healthbar : MonoBehaviour
     {
         if (healthBarImage != null)
         {
-            if (currentHp > damagable.maxHp * 0.5f)
+            if (currentHp > damagable.MaxHp * 0.5f)
             {
                 healthBarImage.color = Color.green; // Zielony
             }
-            else if (currentHp > damagable.maxHp * 0.2f)
+            else if (currentHp > damagable.MaxHp * 0.2f)
             {
                 healthBarImage.color = Color.yellow; // Żółty
             }
             else
             {
-           healthBarImage.color = Color.red; // Czerwony
-           }
-       } 
-          }
+                healthBarImage.color = Color.red; // Czerwony
+            }
+        }
+    }
 }

@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Damagable : MonoBehaviour
+public class Damagable : MonoBehaviour, IDamagable
 {
     private int _hp;
+    private float _regenerateTimer;
 
     [SerializeField, Min(1)]
-    public int maxHp = 100;
+    private int maxHp = 100;
 
     public int Hp
     {
@@ -18,6 +19,8 @@ public class Damagable : MonoBehaviour
             CallHpChangedEvent();
         }
     }
+
+    public int MaxHp => maxHp;
 
     public bool IsAlive => _hp > 0;
 
@@ -36,6 +39,17 @@ public class Damagable : MonoBehaviour
         if (healthRegenerationRate > 0)
         {
             StartCoroutine(Regenerate());
+        }
+        _regenerateTimer = 0f;
+    }
+
+    private void Update()
+    {
+        _regenerateTimer += Time.deltaTime;
+        if (_regenerateTimer >= regenerationCooldown)
+        {
+            Heal(healthRegenerationRate);
+            _regenerateTimer = 0f;
         }
     }
 
@@ -77,8 +91,8 @@ public class Damagable : MonoBehaviour
             Died?.Invoke(this);
         }
         CallHpChangedEvent();
+        _regenerateTimer = 0f;
     }
-
 }
 
 public enum DamageType
