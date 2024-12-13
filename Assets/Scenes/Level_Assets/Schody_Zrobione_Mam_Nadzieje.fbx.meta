@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bbdf7ede63d9494696bf1732ff3029e
+guid: 844b86e37fd8bce4b937d87a6058f61b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
+      name: Material.011
     second: {fileID: 2100000, guid: cd953fd32343b904b910f4920af46ecd, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Schody_Textury
+    second: {fileID: 2800000, guid: 462a01bb126713d42ac4c5ddf5c68829, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

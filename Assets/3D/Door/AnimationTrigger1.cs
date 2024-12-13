@@ -13,8 +13,8 @@ public class AnimationTrigger1 : MonoBehaviour
         {
             if (openDoor == false)
             {
-                myDoor.Play(doorOpen, 0, 0.0f);
-                openDoor = true;
+            myDoor.Play(doorOpen, 0, 0.0f);
+            openDoor = true;
 
             }
             else if (openDoor == true)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bbdf7ede63d9494696bf1732ff3029e
+guid: 9f8637bb505108442a984c4f1d62051d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: cd953fd32343b904b910f4920af46ecd, type: 2}
+      name: Material.009
+    second: {fileID: 2100000, guid: c6024e485504bfa4b8468ce65561ef65, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: "Pod\u0142oga_"
+    second: {fileID: 2800000, guid: 66defd299f2b7e7419b6b8bb9b5a7f81, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
