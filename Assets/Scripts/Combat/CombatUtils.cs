@@ -49,7 +49,6 @@ public static class CombatUtils
 
         Ray ray = new(origin, rotatedDirection);
         Vector3 trailEnd;
-        GameObject vfxPrefab = null;
 
         // Cast a ray in the set direction
         if (Physics.Raycast(ray, out var hit, shootingParams.maxDistance,
@@ -62,11 +61,15 @@ public static class CombatUtils
 
             if (hit.collider.TryGetComponent(out ImpactSurface surface))
             {
-                vfxPrefab = surface.VfxPrefab;
+                var vfxPrefab = surface.VfxPrefab;
 
                 if (!vfxPrefab)
                 {
                     Debug.LogWarning($"The f**king '{surface.name}' surface has no f**king VFX prefab.", surface);
+                }
+                else
+                {
+                    Object.Instantiate(vfxPrefab, hit.point, Quaternion.identity);
                 }
             }
 
@@ -80,7 +83,7 @@ public static class CombatUtils
         if (shootingParams.trailPrefab)
         {
             var trail = Object.Instantiate(shootingParams.trailPrefab);
-            trail.Init(trailOrigin, trailEnd, vfxPrefab);
+            trail.Init(trailOrigin, trailEnd);
         }
         else
         {

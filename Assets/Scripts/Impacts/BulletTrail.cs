@@ -16,14 +16,9 @@ public class BulletTrail : MonoBehaviour
         Destroy(gameObject, duration);
     }
 
-    public void Init(Vector3 from, Vector3 to, GameObject vfxPrefab)
+    public void Init(Vector3 from, Vector3 to)
     {
         _lineRenderer.SetPosition(0, from);
         _lineRenderer.SetPosition(1, to);
-
-        if (vfxPrefab)
-        {
-            Instantiate(vfxPrefab, transform.parent);
-        }
     }
 }
