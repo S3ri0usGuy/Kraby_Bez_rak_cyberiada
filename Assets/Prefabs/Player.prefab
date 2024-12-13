@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  healthRegenerationRate: 15
-  regenerationCooldown: 4
+  healthRegenerationRate: 5
+  regenerationCooldown: 7
 --- !u!1 &2175722936725451782
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,8 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 3236314341796377074}
   player: {fileID: 3326851460332086288}
-  oneHpThreshold: 10
-  maxHpThreshold: 75
+  oneHpThreshold: 20
   transitionSpeed: 2
   damagedIntensity: 0.191
   damagedRecoverSpeed: 0.4

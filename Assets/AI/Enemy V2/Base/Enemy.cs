@@ -5,8 +5,10 @@ public class Enemy : MonoBehaviour, /*IDamagable,*/ IEnemyMovable, ITriggerCheck
     [field: SerializeField] public int MaxHealth { get; set; } = 100;
     public int CurrentHealth { get; set; }
     public Rigidbody RB { get; set; }
-    public bool isAggroed { get ; set ; }
+    public bool isAggroed { get; set; }
     public bool isWithinStrikingDistance { get; set; }
+
+    public Animator animator;
 
 
     #region enemy state variables
@@ -14,7 +16,7 @@ public class Enemy : MonoBehaviour, /*IDamagable,*/ IEnemyMovable, ITriggerCheck
     public EnemyIdleState idleState { set; get; }
     public EnemyChaseState chaseState { set; get; }
     public EnemyAttackState attackState { set; get; }
-    
+
     #endregion
 
     #region enemy idle state variables
