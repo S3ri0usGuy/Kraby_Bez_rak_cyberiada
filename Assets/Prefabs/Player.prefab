@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magazineCapacity: 8
   bulletsOrigin: {fileID: 6502286371804488486}
+  trailsOrigin: {fileID: 4633176578337138812}
   shootingLayerMask:
     serializedVersion: 2
     m_Bits: 191
@@ -313,10 +314,11 @@ MonoBehaviour:
   grenadeOrigin: {fileID: 8171492102832636368}
   grenadePosition: {fileID: 6869206373669307740}
   shootingParams:
-    maxDistance: 0
-    horizontalSpread: 0
-    verticalSpread: 0
-    damage: 0
+    maxDistance: 100
+    horizontalSpread: 1
+    verticalSpread: 1
+    damage: 12
+    trailPrefab: {fileID: 3240953442090162697, guid: bfc035bc31c7d6642a544ef478ea1eaf, type: 3}
 --- !u!1 &2175722936725451782
 GameObject:
   m_ObjectHideFlags: 0

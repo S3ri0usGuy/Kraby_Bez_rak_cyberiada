@@ -17,6 +17,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private Transform bulletsOrigin;
     [SerializeField]
+    private Transform trailsOrigin;
+    [SerializeField]
     private LayerMask shootingLayerMask = -1;
 
     [SerializeField]
@@ -101,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
     public void Shoot()
     {
         CombatUtils.Shoot(bulletsOrigin.position, bulletsOrigin.forward,
-            shootingParams, shootingLayerMask);
+            shootingParams, shootingLayerMask, trailsOrigin.position);
 
         BulletsInMagazine--;
     }
