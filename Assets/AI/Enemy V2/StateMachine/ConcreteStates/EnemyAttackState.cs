@@ -8,7 +8,7 @@ public class EnemyAttackState : EnemyState
     private float _timeBetweenShoots = 2f;
 
     private float _exitTimer;
-    private float _tiemTillExit;
+    private float _timeTillExit;
     private float _distanceToCountExit = 3f;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
@@ -52,7 +52,7 @@ public class EnemyAttackState : EnemyState
         {
             _exitTimer += Time.deltaTime;
 
-            if(_exitTimer > _tiemTillExit)
+            if(_exitTimer > _timeTillExit)
             {
                 enemy.stateMachine.ChangeState(enemy.chaseState);
             }

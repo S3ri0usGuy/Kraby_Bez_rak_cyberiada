@@ -6,6 +6,6 @@ public interface IEnemyMovable
 
     void MoveEnemy(Vector3 velocity);
 
-    void EnemyLookAt(Vector3 lookat);
+    //void EnemyLookAt(Vector3 lookat);
 
 }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
 {//interface tutaj daja cechy ppprzeciwnikowi bo nie kazdy przeciwnik musi miec wszystkie
-    [field: SerializeField] public float MaxHealth { get; set; } = 100f;
-    public float CurrentHealth { get; set; }
+    [field: SerializeField] public int MaxHealth { get; set; } = 100;
+    public int CurrentHealth { get; set; }
     public Rigidbody RB { get; set; }
     public bool isAggroed { get ; set ; }
     public bool isWithinStrikingDistance { get; set; }
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
     #endregion
 
     #region enemy idle state variables
-    public float randomMovementRange = 5f;
+    public float randomMovementRange = 3f;
     public float randomMovementSpeed = 1f;
     //tu s¹ zmienne dotycz¹ce stanu idle które s¹ wykorzystywane przez niego do poruszania
     #endregion
@@ -47,11 +47,11 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
     {
         stateMachine.CurrentEnemyState.PhiscsUpdate();
     }
-    public void Damage(float damageAmount)// system hp i damage
+    public void Damage(int damageAmount)// system hp i damage
     {
         CurrentHealth -= damageAmount;
 
-        if (CurrentHealth >= 0f)
+        if (CurrentHealth >= 0)
         {
             Die();
         }
@@ -72,6 +72,10 @@ public class Enemy : MonoBehaviour, IDamagable, IEnemyMovable, ITriggerCheckable
     public void MoveEnemy(Vector3 velocity)// funkcja która porusza rigid body które jest w enemy poprzez nadanie mu velocity, kiedy chcesz ruszyæ przeciwnikiem calluj t¹ funkcje
     {
         RB.linearVelocity = velocity;
+        //RB.MovePosition(velocity);
+        //transform.position = Vector3.MoveTowards(transform.position, velocity, randomMovementSpeed * Time.deltaTime);
+        //Vector3.MoveTowards(transform.position, velocity, randomMovementSpeed);
+
     }
 
     #endregion
