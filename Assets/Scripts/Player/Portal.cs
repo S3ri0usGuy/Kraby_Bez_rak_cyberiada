@@ -16,4 +16,18 @@ public class Portal : MonoBehaviour
             controller.enabled = true;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (target)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, target.position);
+
+            Color blue = Color.blue;
+            blue.a = 0.2f;
+            Gizmos.color = blue;
+            Gizmos.DrawSphere(target.position, 1f);
+        }
+    }
 }
