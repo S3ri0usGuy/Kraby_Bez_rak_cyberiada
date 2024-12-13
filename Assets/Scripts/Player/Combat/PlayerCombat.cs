@@ -12,6 +12,9 @@ public class PlayerCombat : MonoBehaviour
     private InputProvider _inputProvider;
 
     [SerializeField]
+    private PlayerRotation playerRotation;
+
+    [SerializeField]
     private int magazineCapacity = 8;
 
     [SerializeField]
@@ -29,6 +32,9 @@ public class PlayerCombat : MonoBehaviour
     private Transform grenadePosition;
     [SerializeField]
     private ShootingParams shootingParams;
+
+    [SerializeField]
+    private Vector2 recoil;
 
     /// <summary>
     /// Gets/sets a current number of bullets in the magazine.
@@ -104,6 +110,8 @@ public class PlayerCombat : MonoBehaviour
     {
         CombatUtils.Shoot(bulletsOrigin.position, bulletsOrigin.forward,
             shootingParams, shootingLayerMask, trailsOrigin.position);
+
+        playerRotation.AddRecoil(recoil.x, recoil.y);
 
         BulletsInMagazine--;
     }
